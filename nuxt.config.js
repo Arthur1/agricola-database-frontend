@@ -1,10 +1,12 @@
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'agricola-database-viewer',
+    title: 'Agricola DB',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -14,7 +16,21 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/scss/app.scss'],
+
+  router: {
+    trailingSlash: true,
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/:revision/cards/:page',
+        component: resolve(__dirname, 'pages/_revision/cards/index.vue'),
+      })
+    },
+  },
+
+  generate: {
+    fallback: true,
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -28,6 +44,10 @@ export default {
     '@nuxtjs/eslint-module',
   ],
 
+  dotenv: {
+    filename: `.env.${process.env.NODE_ENV}`,
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -38,13 +58,31 @@ export default {
     '@nuxtjs/pwa',
   ],
 
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
+    icons: true,
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: process.env.API_BASE_URL,
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      name: 'Agricola DB',
+      short_name: 'AgricolaDB',
+      description: 'This is Agricola DB.',
+      lang: 'ja',
+      theme_color: '#ff9800',
+      background_color: '#ffffff',
+    },
+    meta: {
+      ogType: 'website',
+      ogSiteName: 'Agricola DB',
+      ogDescription: 'This is Agricola DB.',
     },
   },
 
