@@ -894,6 +894,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/roboto@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.1.0.tgz#28e0fb775013959df3a6b6d2c4ba0aad437f8d32"
+  integrity sha512-I4CIw73eJC/Oh83tPoRVKkySCLDwUQ2aK7O9wR5tRYc5APbsd3MrN6JhAvylIIwzn8eHQEMVoSjNGY9/sPLzyA==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -7317,6 +7322,11 @@ normalize-url@^3.0.0, normalize-url@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
+
+noto-sans-jp@^27.0.0:
+  version "27.0.0"
+  resolved "https://registry.yarnpkg.com/noto-sans-jp/-/noto-sans-jp-27.0.0.tgz#4421444277ae31891cf8b25a10742256b60d7379"
+  integrity sha512-2cCPmXLd3Mr8TFYzTEbgOuF/0h7G3o6C0zYN8Ka9nKd5Ttt+vPXoMRfJKcI/n5Um4oPCBKHt6HyiSTfKDQc30Q==
 
 npm-run-path@^2.0.0:
   version "2.0.2"

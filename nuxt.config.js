@@ -16,7 +16,11 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/scss/app.scss'],
+  css: [
+    '@fontsource/roboto/index.css',
+    'noto-sans-jp/noto_sans_jp_regular/css.css',
+    '@/assets/scss/app.scss',
+  ],
 
   router: {
     trailingSlash: true,
