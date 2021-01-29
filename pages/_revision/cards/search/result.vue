@@ -63,8 +63,16 @@ export default {
   },
 
   head() {
+    const title = `カード検索結果 (${this.$route.params.revision})`
     return {
-      title: `カード検索結果 (${this.$route.params.revision})`,
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+      ],
     }
   },
 

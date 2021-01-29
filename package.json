@@ -16,6 +16,8 @@
     "@fontsource/roboto": "^4.1.0",
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.4",
+    "@nuxtjs/robots": "^2.4.2",
+    "@nuxtjs/sitemap": "^2.4.0",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.2",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@vue/test-utils": "^1.1.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",

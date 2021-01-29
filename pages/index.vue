@@ -1,11 +1,63 @@
 <template>
   <div>
     <b-container>
-      <h1 class="text-primary mt-4">Agricola DB</h1>
+      <b-jumbotron
+        header="Agricola DB"
+        lead="Agricola Database for Japanese"
+        class="mt-4"
+      >
+      </b-jumbotron>
+      <p>
+        ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。（現在は旧版のカードのみ掲載。）
+      </p>
+      <p>
+        日本語版が発売されていないものについては、本サイト製作者のArthurが翻訳した内容を掲載しています。（※翻訳ルールについては、<NuxtLink
+          to="translation-rule"
+          >「翻訳ルール」ページ</NuxtLink
+        >をご覧ください。）また、日本語版が発売されているものでも、エラッタを適用しているものがあります。
+      </p>
+      <h2 class="mt-4 text-primary">更新履歴</h2>
+      <b-list-group class="mt-4">
+        <b-list-group-item>
+          <span class="history_date">2021.00.00</span><br />Agricola
+          DBを公開しました
+        </b-list-group-item>
+      </b-list-group>
+      <h2 class="mt-4 text-primary">PR</h2>
+      <client-only>
+        <div class="text-center">
+          <a
+            data-ofuse-widget-button
+            href="https://ofuse.me/o?uid=32093"
+            data-ofuse-id="32093"
+            data-ofuse-size="large"
+            data-ofuse-text="開発を応援する"
+            >開発を応援する</a
+          >
+          <script
+            async
+            src="https://ofuse.me/assets/platform/widget.js"
+            charset="utf-8"
+          ></script>
+        </div>
+      </client-only>
     </b-container>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: 'Agricola DB',
+      titleTemplate: '%s',
+    }
+  },
+}
 </script>
+
+<style scoped>
+.history_date {
+  color: gray;
+}
+</style>

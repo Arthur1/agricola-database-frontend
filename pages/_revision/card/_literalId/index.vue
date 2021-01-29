@@ -90,17 +90,49 @@
 </template>
 <script>
 export default {
-  async asyncData({ payload, params, $axios }) {
+  async asyncData({ payload, params, error, $axios }) {
     if (payload) {
       return {
         card: payload,
       }
     }
-    const data = await $axios.$get(
-      `/${params.revision}/cards/${params.literalId}`
-    )
+    if (params.revision !== 'AG1') {
+      error({ statusCode: 404, message: 'Page not found' })
+      return false
+    }
+    const data = await $axios
+      .$get(`/${params.revision}/cards/${params.literalId}`)
+      .catch((_) => {
+        error({ statusCode: 404, message: 'Page not found' })
+        return false
+      })
     return {
       card: data.card,
+    }
+  },
+
+  head() {
+    const title = `[${this.card.printed_id}] ${this.card.name_ja}`
+    const description = `【${this.card.type.name_ja}】${this.card.description}`
+    return {
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: description,
+        },
+      ],
     }
   },
 

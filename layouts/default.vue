@@ -6,7 +6,7 @@
     <main class="flex-shrink-0">
       <Nuxt />
     </main>
-    <footer class="footer mt-auto py-3">
+    <footer class="footer mt-auto">
       <FooterNav />
     </footer>
   </div>

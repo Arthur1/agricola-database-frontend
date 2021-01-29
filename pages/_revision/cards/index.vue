@@ -37,19 +37,30 @@
 </template>
 <script>
 export default {
-  async asyncData({ payload, params, $axios }) {
+  async asyncData({ payload, params, error, $axios }) {
     if (payload) {
       return {
         cards: payload.cards,
         meta: payload.meta,
       }
     }
+
+    if (params.revision !== 'AG1') {
+      error({ statusCode: 404, message: 'Page not found' })
+      return false
+    }
+
     const page = params.page || '1'
-    const data = await $axios.$get(`/${params.revision}/cards`, {
-      params: {
-        page,
-      },
-    })
+    const data = await $axios
+      .$get(`/${params.revision}/cards`, {
+        params: {
+          page,
+        },
+      })
+      .catch((_) => {
+        error({ statusCode: 404, message: 'Page not found' })
+        return false
+      })
     return {
       cards: data.cards,
       meta: data.meta,
@@ -57,8 +68,16 @@ export default {
   },
 
   head() {
+    const title = `カード一覧 (${this.$route.params.revision})`
     return {
-      title: `カード一覧 (${this.$route.params.revision})`,
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+      ],
     }
   },
 

@@ -8,6 +8,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Agricola DB',
+    titleTemplate: '%s - Agricola DB',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -61,14 +62,6 @@ export default {
         }))
       }
       const cardPages = [].concat.apply([], cardPagesList)
-      /*
-      const otherPages = [
-        {
-          route: `/AG1/cards/search/result/`,
-        },
-      ]
-      */
-      // return [...cardsPages, ...cardPages, ...otherPages]
       return [...cardsPages, ...cardPages]
     },
   },
@@ -83,10 +76,18 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/google-analytics',
   ],
 
   dotenv: {
     filename: `.env.${process.env.NODE_ENV}`,
+  },
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: {
+      enabled: process.env.NODE_ENV !== 'production',
+    },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -97,6 +98,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
 
   bootstrapVue: {
@@ -115,7 +118,8 @@ export default {
     manifest: {
       name: 'Agricola DB',
       short_name: 'AgricolaDB',
-      description: 'This is Agricola DB.',
+      description:
+        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。（現在は旧版のカードのみ掲載。）',
       lang: 'ja',
       theme_color: '#ff9800',
       background_color: '#ffffff',
@@ -123,8 +127,29 @@ export default {
     meta: {
       ogType: 'website',
       ogSiteName: 'Agricola DB',
-      ogDescription: 'This is Agricola DB.',
+      ogDescription:
+        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。（現在は旧版のカードのみ掲載。）',
+      ogHost: process.env.BASE_URL,
     },
+  },
+
+  sitemap: {
+    hostname: process.env.BASE_URL,
+  },
+
+  robots: () => {
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        UserAgent: '*',
+        Disallow: '',
+        Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
+      }
+    } else {
+      return {
+        UserAgent: '*',
+        Disallow: '/',
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

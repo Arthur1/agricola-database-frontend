@@ -87,7 +87,11 @@ const typeOptions = [
 ]
 
 export default {
-  async asyncData({ params, $axios }) {
+  async asyncData({ params, error, $axios }) {
+    if (params.revision !== 'AG1') {
+      error({ statusCode: 404, message: 'Page not found' })
+      return false
+    }
     const productsData = await $axios.$get(`/${params.revision}/products`)
     const decksData = await $axios.$get(`/${params.revision}/decks`)
     return {
@@ -108,6 +112,20 @@ export default {
       },
       isShown: true,
       typeOptions,
+    }
+  },
+
+  head() {
+    const title = `カード検索 (${this.$route.params.revision})`
+    return {
+      title,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+      ],
     }
   },
 
