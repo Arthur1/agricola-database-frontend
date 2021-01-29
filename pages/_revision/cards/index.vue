@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container>
+    <b-container v-if="cards">
       <h1 class="mt-4 text-primary">
         カード一覧 ({{ $route.params.revision }})
       </h1>
@@ -8,7 +8,7 @@
         <b-list-group-item
           v-for="card in cards"
           :key="card.id"
-          :to="`/AG${card.product.revision_id}/card/${card.literal_id}/`"
+          :to="`/AG${card.revision_id}/card/${card.literal_id}`"
           class="d-flex justify-content-between align-items-center"
         >
           {{ card.name_ja }}
@@ -29,9 +29,15 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, $axios }) {
+  async asyncData({ payload, params, $axios }) {
+    if (payload) {
+      return {
+        cards: payload.cards,
+        meta: payload.meta,
+      }
+    }
     const page = params.page || '1'
-    const data = await $axios.$get(`/${params.revision}/cards/`, {
+    const data = await $axios.$get(`/${params.revision}/cards`, {
       params: {
         page,
       },
@@ -50,7 +56,7 @@ export default {
 
   methods: {
     solvePaginationLink(page) {
-      this.$router.push(`/${this.$route.params.revision}/cards/${page}/`)
+      this.$router.push(`/${this.$route.params.revision}/cards/${page}`)
     },
   },
 }

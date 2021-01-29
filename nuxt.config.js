@@ -1,3 +1,4 @@
+import axios from 'axios'
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 
 export default {
@@ -23,7 +24,6 @@ export default {
   ],
 
   router: {
-    trailingSlash: true,
     extendRoutes(routes, resolve) {
       routes.push({
         path: '/:revision/cards/:page',
@@ -34,6 +34,43 @@ export default {
 
   generate: {
     fallback: true,
+    async routes() {
+      const cardsPages = []
+      const cardPagesList = []
+      for (let page = 1; ; page++) {
+        const res = await axios.get(`${process.env.API_BASE_URL}/AG1/cards`, {
+          params: { page },
+        })
+        await new Promise((resolve) => {
+          setTimeout(resolve, 800)
+        })
+        if (!res.data.cards.length) break
+        if (page === 1) {
+          cardsPages[0] = {
+            route: `/AG1/cards`,
+            payload: res.data,
+          }
+        }
+        cardsPages[page] = {
+          route: `/AG1/cards/${page}`,
+          payload: res.data,
+        }
+        cardPagesList[page - 1] = res.data.cards.map((card) => ({
+          route: `/AG1/card/${card.literal_id}`,
+          payload: card,
+        }))
+      }
+      const cardPages = [].concat.apply([], cardPagesList)
+      /*
+      const otherPages = [
+        {
+          route: `/AG1/cards/search/result/`,
+        },
+      ]
+      */
+      // return [...cardsPages, ...cardPages, ...otherPages]
+      return [...cardsPages, ...cardPages]
+    },
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

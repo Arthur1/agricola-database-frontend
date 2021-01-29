@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container>
+    <b-container v-if="card">
       <h1 class="mt-4 cardTitle">
         <span :class="cardNameJaClass">{{ card.name_ja }}</span
         ><CardIdBadge :card="card" />
@@ -12,7 +12,9 @@
         <dt>種類</dt>
         <dd>
           {{ card.type.name_ja }}
-          <span v-if="card.occ_category">[{{ card.occ_category }}+]</span>
+          <span v-if="card.min_players_number"
+            >[{{ card.min_players_number }}+]</span
+          >
         </dd>
         <dt v-if="card.imp_prereq">前提</dt>
         <dd v-if="card.imp_prereq">{{ card.imp_prereq }}</dd>
@@ -46,7 +48,13 @@
           </tr>
           <tr>
             <th scope="row">収録製品</th>
-            <td>{{ card.product.name_ja }}</td>
+            <td>
+              <ul>
+                <li v-for="product in card.products" :key="product.id">
+                  {{ product.name_ja }}
+                </li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <th scope="row">PlayAgricola</th>
@@ -73,7 +81,12 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, $axios }) {
+  async asyncData({ payload, params, $axios }) {
+    if (payload) {
+      return {
+        card: payload,
+      }
+    }
     const data = await $axios.$get(
       `/${params.revision}/cards/${params.literalId}`
     )
@@ -81,6 +94,7 @@ export default {
       card: data.card,
     }
   },
+
   computed: {
     cardNameJaClass() {
       if (this.card.type.name_en.includes('X-Deck')) return 'cardNameJa-XDeck'
@@ -101,8 +115,8 @@ export default {
         this.card.has_bonus ||
         this.card.has_neg_bonus ||
         this.card.has_pan_icon ||
-        this.card.had_bread_icon ||
-        this.card.rev2_category_icon
+        this.card.has_bread_icon ||
+        this.card.ag2_category_icon
       )
     },
   },
@@ -142,5 +156,9 @@ export default {
 .description {
   white-space: pre-wrap;
   overflow-wrap: break-word;
+}
+
+ul {
+  margin-bottom: 0;
 }
 </style>
