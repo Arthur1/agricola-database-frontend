@@ -44,14 +44,23 @@
         <tbody>
           <tr>
             <th scope="row">デッキ</th>
-            <td>{{ card.deck ? card.deck.name_ja : '-' }}</td>
+            <td v-if="card.deck">
+              <NuxtLink
+                :to="`/AG${card.revision_id}/cards/search/result?page=1&deck_id=${card.deck.id}`"
+                >{{ card.deck.name_ja }}</NuxtLink
+              >
+            </td>
+            <td v-else>-</td>
           </tr>
           <tr>
             <th scope="row">収録製品</th>
             <td>
               <ul>
                 <li v-for="product in card.products" :key="product.id">
-                  {{ product.name_ja }}
+                  <NuxtLink
+                    :to="`/AG${card.revision_id}/cards/search/result?page=1&product_id=${product.id}`"
+                    >{{ product.name_ja }}</NuxtLink
+                  >
                 </li>
               </ul>
             </td>
