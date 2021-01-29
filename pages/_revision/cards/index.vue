@@ -15,7 +15,7 @@
           <CardIdBadge :card="card" />
         </b-list-group-item>
       </b-list-group>
-      <div class="mt-3">
+      <div class="mt-3 mb-5">
         <b-pagination
           v-model="meta.current_page"
           :total-rows="meta.total"
@@ -23,6 +23,14 @@
           align="center"
           @input="solvePaginationLink"
         ></b-pagination>
+      </div>
+      <div class="searchButtonBox">
+        <b-button
+          :to="`/${$route.params.revision}/cards/search`"
+          variant="info"
+          size="lg"
+          ><b-icon-search
+        /></b-button>
       </div>
     </b-container>
   </div>
@@ -61,3 +69,11 @@ export default {
   },
 }
 </script>
+<style scoped>
+.searchButtonBox {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+}
+</style>
