@@ -35,6 +35,7 @@ export default {
 
   generate: {
     fallback: true,
+    concurrency: process.env.CONCURRENCY || 500,
     async routes() {
       const cardsPages = []
       const cardPagesList = []
