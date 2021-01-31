@@ -10,8 +10,8 @@
     </div>
     <div class="text-center">
       <small
-        ><span class="mr-3">[Front-end]v{{ frontendVersion }}</span
-        >[API]v{{ apiVersion }}</small
+        ><span class="mr-3">[Front-end] v{{ frontendVersion }}</span
+        >[API] v{{ apiVersion }}</small
       >
     </div>
   </div>

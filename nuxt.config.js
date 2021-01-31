@@ -2,16 +2,6 @@ import axios from 'axios'
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 
 export default {
-  async publicRuntimeConfig() {
-    const apiVersionRes = await axios.get(
-      `${process.env.API_BASE_URL}/utils/version`
-    )
-    return {
-      apiVersion: apiVersionRes.data.version,
-      frontendVersion: process.env.npm_package_version || null,
-    }
-  },
-
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -92,6 +82,11 @@ export default {
 
   dotenv: {
     filename: `.env.${process.env.NODE_ENV}`,
+  },
+
+  publicRuntimeConfig: {
+    apiVersion: process.env.API_VERSION || null,
+    frontendVersion: process.env.npm_package_version || null,
   },
 
   googleAnalytics: {
