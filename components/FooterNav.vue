@@ -10,26 +10,20 @@
     </div>
     <div class="text-center">
       <small
-        ><span class="mr-3">Front-end: v{{ frontendVersion }}</span
-        >API: v{{ apiVersion }}</small
+        ><span class="mr-3">[Front-end]v{{ frontendVersion }}</span
+        >[API]v{{ apiVersion }}</small
       >
     </div>
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      apiVersion: 'unknown',
-    }
-  },
-  async fetch() {
-    const data = await this.$axios.$get('/utils/version')
-    this.apiVersion = data.version
-  },
   computed: {
     frontendVersion() {
-      return process.env.frontendVersion
+      return this.$config.frontendVersion || '.unknown'
+    },
+    apiVersion() {
+      return this.$config.apiVersion || '.unknown'
     },
   },
 }

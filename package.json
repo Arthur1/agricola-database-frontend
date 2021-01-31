@@ -3,9 +3,9 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --port 8888",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt start --port 8888",
     "generate": "nuxt generate",
     "generate:test": "NODE_ENV=test nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",

@@ -24,23 +24,16 @@
         </b-list-group-item>
       </b-list-group>
       <h2 class="mt-4 text-primary">PR</h2>
-      <client-only>
-        <div class="text-center">
-          <a
-            data-ofuse-widget-button
-            href="https://ofuse.me/o?uid=32093"
-            data-ofuse-id="32093"
-            data-ofuse-size="large"
-            data-ofuse-text="開発を応援する"
-            >開発を応援する</a
-          >
-          <script
-            async
-            src="https://ofuse.me/assets/platform/widget.js"
-            charset="utf-8"
-          ></script>
-        </div>
-      </client-only>
+      <div class="text-center">
+        <b-button
+          size="lg"
+          variant="info"
+          href="https://ofuse.me/o?uid=32093"
+          target="_blank"
+          rel="noopener"
+          >開発を応援する</b-button
+        >
+      </div>
     </b-container>
   </div>
 </template>
