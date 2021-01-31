@@ -8,5 +8,23 @@
         ></small
       >
     </div>
+    <div class="text-center">
+      <small
+        ><span class="mr-3">[Front-end] v{{ frontendVersion }}</span
+        >[API] v{{ apiVersion }}</small
+      >
+    </div>
   </div>
 </template>
+<script>
+export default {
+  computed: {
+    frontendVersion() {
+      return this.$config.frontendVersion || '.unknown'
+    },
+    apiVersion() {
+      return this.$config.apiVersion || '.unknown'
+    },
+  },
+}
+</script>

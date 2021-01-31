@@ -17,7 +17,7 @@
       </b-list-group>
       <div class="mt-3 mb-5">
         <b-pagination
-          v-model="meta.current_page"
+          v-model="currentPage"
           :total-rows="meta.total"
           :per-page="meta.per_page"
           align="center"
@@ -79,6 +79,15 @@ export default {
         },
       ],
     }
+  },
+
+  computed: {
+    currentPage: {
+      get() {
+        return this.meta.current_page || 1
+      },
+      set(_) {},
+    },
   },
 
   methods: {

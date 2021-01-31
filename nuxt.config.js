@@ -35,6 +35,7 @@ export default {
 
   generate: {
     fallback: true,
+    concurrency: process.env.CONCURRENCY || 500,
     async routes() {
       const cardsPages = []
       const cardPagesList = []
@@ -81,6 +82,11 @@ export default {
 
   dotenv: {
     filename: `.env.${process.env.NODE_ENV}`,
+  },
+
+  publicRuntimeConfig: {
+    apiVersion: process.env.API_VERSION || null,
+    frontendVersion: process.env.npm_package_version || null,
   },
 
   googleAnalytics: {
