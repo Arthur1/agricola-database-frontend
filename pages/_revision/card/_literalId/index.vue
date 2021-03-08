@@ -40,7 +40,7 @@
         </dd>
       </dl>
       <h2 class="mt-4 text-secondary">メタ情報</h2>
-      <table class="table table-striped">
+      <table class="table table-striped" aria-describedby="メタ情報">
         <tbody>
           <tr>
             <th scope="row">デッキ</th>
@@ -113,7 +113,7 @@ export default {
 
   head() {
     const title = `[${this.card.printed_id}] ${this.card.name_ja}`
-    const description = `【${this.card.type.name_ja}】${this.card.description}`
+    const description = this.description
     return {
       title,
       meta: [
@@ -159,6 +159,9 @@ export default {
         this.card.has_bread_icon ||
         this.card.ag2_category_icon
       )
+    },
+    description() {
+      return `[${this.card.printed_id}] ${this.card.type.name_ja} (${this.card.type.name_ja}) ${this.card.description}`
     },
   },
 }
