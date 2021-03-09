@@ -36,6 +36,9 @@
             </li>
             <li v-if="card.has_pan_icon"><b-icon-minecart />鍋マーク</li>
             <li v-if="card.has_bread_icon"><b-icon-cloud />パンマーク</li>
+            <li v-if="card.ag2_category_icon">
+              カテゴリアイコン: {{ card.ag2_category_icon.name_ja }}
+            </li>
           </ul>
         </dd>
       </dl>
@@ -83,6 +86,34 @@
               {{ card.ja_is_official ? '公式' : '非公式' }}
             </td>
           </tr>
+          <tr>
+            <th scope="row">再録関係</th>
+            <td>
+              <span
+                v-if="
+                  card.origin_cards.length === 0 &&
+                  card.republished_cards.length === 0
+                "
+                >-</span
+              >
+              <ul v-else>
+                <li v-for="card in card.origin_cards" :key="card.id">
+                  <NuxtLink
+                    :to="`/AG${card.revision_id}/card/${card.literal_id}`"
+                    >AG{{ card.revision_id }}: [{{ card.printed_id }}]
+                    {{ card.name_ja }}</NuxtLink
+                  >
+                </li>
+                <li v-for="card in card.republished_cards" :key="card.id">
+                  <NuxtLink
+                    :to="`/AG${card.revision_id}/card/${card.literal_id}`"
+                    >AG{{ card.revision_id }}: [{{ card.printed_id }}]
+                    {{ card.name_ja }}</NuxtLink
+                  >
+                </li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
     </b-container>
@@ -96,7 +127,7 @@ export default {
         card: payload,
       }
     }
-    if (params.revision !== 'AG1') {
+    if (params.revision !== 'AG1' && params.revision !== 'AG2') {
       error({ statusCode: 404, message: 'Page not found' })
       return false
     }

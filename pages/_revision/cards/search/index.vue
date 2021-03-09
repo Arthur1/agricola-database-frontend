@@ -88,7 +88,7 @@ const typeOptions = [
 
 export default {
   async asyncData({ params, error, $axios }) {
-    if (params.revision !== 'AG1') {
+    if (params.revision !== 'AG1' && params.revision !== 'AG2') {
       error({ statusCode: 404, message: 'Page not found' })
       return false
     }
