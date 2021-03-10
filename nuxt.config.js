@@ -157,7 +157,7 @@ export default {
       name: 'Agricola DB',
       short_name: 'AgricolaDB',
       description:
-        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。（現在は旧版のカードのみ掲載。）',
+        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。',
       lang: 'ja',
       theme_color: '#ff9800',
       background_color: '#ffffff',
@@ -166,7 +166,7 @@ export default {
       ogType: 'website',
       ogSiteName: 'Agricola DB',
       ogDescription:
-        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。（現在は旧版のカードのみ掲載。）',
+        'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。',
       ogHost: process.env.BASE_URL,
     },
   },
