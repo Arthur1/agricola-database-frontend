@@ -19,6 +19,10 @@
       <h2 class="mt-4 text-primary">更新履歴</h2>
       <b-list-group class="mt-4">
         <b-list-group-item>
+          <span class="history_date">2021.03.10</span
+          ><br />リバイズドエディションのカードを追加しました
+        </b-list-group-item>
+        <b-list-group-item>
           <span class="history_date">2021.01.29</span><br />Agricola
           DBを公開しました
         </b-list-group-item>
