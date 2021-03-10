@@ -100,15 +100,17 @@
                 <li v-for="card in card.origin_cards" :key="card.id">
                   <NuxtLink
                     :to="`/AG${card.revision_id}/card/${card.literal_id}`"
-                    >AG{{ card.revision_id }}: [{{ card.printed_id }}]
-                    {{ card.name_ja }}</NuxtLink
+                    >AG{{ card.revision_id }}: {{ card.name_ja }} [{{
+                      card.printed_id
+                    }}]</NuxtLink
                   >
                 </li>
                 <li v-for="card in card.republished_cards" :key="card.id">
                   <NuxtLink
                     :to="`/AG${card.revision_id}/card/${card.literal_id}`"
-                    >AG{{ card.revision_id }}: [{{ card.printed_id }}]
-                    {{ card.name_ja }}</NuxtLink
+                    >AG{{ card.revision_id }}: {{ card.name_ja }} [{{
+                      card.printed_id
+                    }}]</NuxtLink
                   >
                 </li>
               </ul>
