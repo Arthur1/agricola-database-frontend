@@ -16,7 +16,7 @@ export default {
   computed: {
     badgeClass() {
       if (this.card.special_color) {
-        return ''
+        return `cardIdBadge-special${this.card.special_color.id}`
       } else {
         if (this.card.type.name_en.includes('Occupation'))
           return 'cardIdBadge-occupation'
@@ -77,5 +77,16 @@ export default {
 }
 .cardIdBadge-WBDeck {
   background: $wb-deck;
+}
+.cardIdBadge-special1 {
+  background: linear-gradient(0.25turn, $minor-improvement, $major-improvement);
+}
+.cardIdBadge-special2 {
+  background: linear-gradient(
+    0.25turn,
+    $occupation,
+    $minor-improvement 50%,
+    $major-improvement
+  );
 }
 </style>

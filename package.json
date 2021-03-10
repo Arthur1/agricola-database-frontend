@@ -1,6 +1,6 @@
 {
   "name": "agricola-database-viewer",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt --port 8888",
