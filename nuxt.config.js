@@ -37,8 +37,8 @@ export default {
     fallback: true,
     concurrency: process.env.CONCURRENCY || 500,
     async routes() {
-      const cardsPages = []
-      const cardPagesList = []
+      const ag1CardsPages = []
+      const ag1CardPagesList = []
       for (let page = 1; ; page++) {
         const res = await axios.get(`${process.env.API_BASE_URL}/AG1/cards`, {
           params: { page },
@@ -48,22 +48,54 @@ export default {
         })
         if (!res.data.cards.length) break
         if (page === 1) {
-          cardsPages[0] = {
+          ag1CardsPages[0] = {
             route: `/AG1/cards`,
             payload: res.data,
           }
         }
-        cardsPages[page] = {
+        ag1CardsPages[page] = {
           route: `/AG1/cards/${page}`,
           payload: res.data,
         }
-        cardPagesList[page - 1] = res.data.cards.map((card) => ({
+        ag1CardPagesList[page - 1] = res.data.cards.map((card) => ({
           route: `/AG1/card/${card.literal_id}`,
           payload: card,
         }))
       }
-      const cardPages = [].concat.apply([], cardPagesList)
-      return [...cardsPages, ...cardPages]
+      const ag1CardPages = [].concat.apply([], ag1CardPagesList)
+
+      const ag2CardsPages = []
+      const ag2CardPagesList = []
+      for (let page = 1; ; page++) {
+        const res = await axios.get(`${process.env.API_BASE_URL}/AG2/cards`, {
+          params: { page },
+        })
+        await new Promise((resolve) => {
+          setTimeout(resolve, 800)
+        })
+        if (!res.data.cards.length) break
+        if (page === 1) {
+          ag2CardsPages[0] = {
+            route: `/AG2/cards`,
+            payload: res.data,
+          }
+        }
+        ag2CardsPages[page] = {
+          route: `/AG2/cards/${page}`,
+          payload: res.data,
+        }
+        ag2CardPagesList[page - 1] = res.data.cards.map((card) => ({
+          route: `/AG2/card/${card.literal_id}`,
+          payload: card,
+        }))
+      }
+      const ag2CardPages = [].concat.apply([], ag2CardPagesList)
+      return [
+        ...ag1CardsPages,
+        ...ag1CardPages,
+        ...ag2CardsPages,
+        ...ag2CardPages,
+      ]
     },
   },
 
