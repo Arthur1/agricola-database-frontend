@@ -194,7 +194,7 @@ export default {
       )
     },
     description() {
-      return `[${this.card.printed_id}] ${this.card.type.name_ja} (${this.card.type.name_ja}) ${this.card.description}`
+      return `[${this.card.printed_id}] ${this.card.name_ja} (${this.card.type.name_ja}) ${this.card.description}`
     },
   },
 }
