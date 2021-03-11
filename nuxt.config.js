@@ -125,6 +125,7 @@ export default {
     id: process.env.GOOGLE_ANALYTICS_ID,
     debug: {
       enabled: process.env.NODE_ENV !== 'production',
+      sentHitTask: process.env.NODE_ENV === 'production',
     },
   },
 
