@@ -1,6 +1,6 @@
 {
   "name": "agricola-database-viewer",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "nuxt --port 8888",
@@ -22,7 +22,8 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.2",
     "noto-sans-jp": "^27.0.0",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "sanitize-html": "^2.7.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
