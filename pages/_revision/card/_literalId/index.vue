@@ -8,6 +8,7 @@
       <div class="cardNameEn">
         {{ card.name_en }}
       </div>
+      <!-- eslint-disable vue/no-v-html -->
       <dl>
         <dt>種類</dt>
         <dd>
@@ -17,13 +18,13 @@
           >
         </dd>
         <dt v-if="card.imp_prereq">前提</dt>
-        <dd v-if="card.imp_prereq">{{ card.imp_prereq }}</dd>
+        <dd v-if="card.imp_prereq" v-html="replacedCardImpPrereq"></dd>
         <dt v-if="card.imp_cost">コスト</dt>
-        <dd v-if="card.imp_cost">{{ card.imp_cost }}</dd>
+        <dd v-if="card.imp_cost" v-html="replacedCardImpCost"></dd>
         <dt v-if="card.vps">カード点</dt>
         <dd v-if="card.vps">{{ card.vps }}点</dd>
         <dt>テキスト</dt>
-        <dd class="description">{{ card.description }}</dd>
+        <dd class="description" v-html="replacedCardDescription"></dd>
         <dt v-if="hasAnyIcon">マーク・シンボル</dt>
         <dd v-if="hasAnyIcon">
           <ul>
@@ -34,14 +35,21 @@
             <li v-if="card.has_neg_bonus">
               <b-icon-stop-circle-fill />マイナス点シンボル
             </li>
-            <li v-if="card.has_pan_icon"><b-icon-minecart />鍋マーク</li>
-            <li v-if="card.has_bread_icon"><b-icon-cloud />パンマーク</li>
+            <li v-if="card.has_pan_icon">
+              <img src="/icons/pan.svg" alt="鍋マーク" class="panIcon" />
+              鍋マーク
+            </li>
+            <li v-if="card.has_bread_icon">
+              <img src="/icons/bread.svg" alt="パンマーク" class="breadIcon" />
+              パンマーク
+            </li>
             <li v-if="card.ag2_category_icon">
               カテゴリアイコン: {{ card.ag2_category_icon.name_ja }}
             </li>
           </ul>
         </dd>
       </dl>
+      <!-- eslint-enable -->
       <h2 class="mt-4 text-secondary">メタ情報</h2>
       <table class="table table-striped" aria-describedby="メタ情報">
         <tbody>
@@ -122,6 +130,17 @@
   </div>
 </template>
 <script>
+import sanitizeHTML from 'sanitize-html'
+sanitizeHTML.defaults.allowedTags.push('img')
+sanitizeHTML.defaults.allowedAttributes.img = [
+  'id',
+  'class',
+  'src',
+  'alt',
+  'width',
+  'height',
+]
+
 export default {
   async asyncData({ payload, params, error, $axios }) {
     if (payload) {
@@ -196,6 +215,31 @@ export default {
     description() {
       return `[${this.card.printed_id}] ${this.card.name_ja} (${this.card.type.name_ja}) ${this.card.description}`
     },
+    replacedCardImpPrereq() {
+      if (!this.card.imp_prereq) return null
+      return this.replaceIcon(this.card.imp_prereq)
+    },
+    replacedCardImpCost() {
+      if (!this.card.imp_cost) return null
+      return this.replaceIcon(this.card.imp_cost)
+    },
+    replacedCardDescription() {
+      if (!this.card.description) return null
+      return this.replaceIcon(this.card.description)
+    },
+  },
+
+  methods: {
+    replaceIcon(text) {
+      const panIconHtml =
+        '<img src="/icons/pan.svg" alt="鍋マーク" class="panIcon" />'
+      const breadIconHtml =
+        '<img src="/icons/bread.svg" alt="パンマーク" class="breadIcon" />'
+      const replacedText = text
+        .replace(':鍋:', panIconHtml)
+        .replace(':パン:', breadIconHtml)
+      return sanitizeHTML(replacedText)
+    },
   },
 }
 </script>
@@ -237,5 +281,15 @@ export default {
 
 ul {
   margin-bottom: 0;
+}
+</style>
+<style>
+.panIcon {
+  width: 1.2em;
+  line-height: 1em;
+}
+.breadIcon {
+  width: 1.2em;
+  line-height: 1em;
 }
 </style>
