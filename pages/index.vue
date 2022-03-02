@@ -19,6 +19,10 @@
       <h2 class="mt-4 text-primary">更新履歴</h2>
       <b-list-group class="mt-4">
         <b-list-group-item>
+          <span class="history_date">2022.03.03</span
+          ><br />コルバリウスデッキの情報を日本語版に準拠したものに更新しました
+        </b-list-group-item>
+        <b-list-group-item>
           <span class="history_date">2021.03.10</span
           ><br />リバイズドエディションのカードを追加しました
         </b-list-group-item>
