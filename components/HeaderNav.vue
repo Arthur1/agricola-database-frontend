@@ -6,10 +6,16 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/">Home</b-nav-item>
-        <b-nav-item to="/AG1/cards">カード一覧 (AG1)</b-nav-item>
-        <b-nav-item to="/AG2/cards">カード一覧 (AG2)</b-nav-item>
-        <b-nav-item to="/about">本サイトについて</b-nav-item>
+        <b-nav-item to="/" active-class="active">Home</b-nav-item>
+        <b-nav-item to="/AG1/cards" active-class="active"
+          >カード一覧 (AG1)</b-nav-item
+        >
+        <b-nav-item to="/AG2/cards" active-class="active"
+          >カード一覧 (AG2)</b-nav-item
+        >
+        <b-nav-item to="/about" active-class="active"
+          >本サイトについて</b-nav-item
+        >
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

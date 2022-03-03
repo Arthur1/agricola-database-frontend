@@ -109,7 +109,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/google-analytics',
   ],
 
   dotenv: {
@@ -121,14 +120,6 @@ export default {
     frontendVersion: process.env.npm_package_version || null,
   },
 
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID,
-    debug: {
-      enabled: process.env.NODE_ENV !== 'production',
-      sentHitTask: process.env.NODE_ENV === 'production',
-    },
-  },
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -137,6 +128,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/google-gtag',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
   ],
@@ -170,6 +162,11 @@ export default {
         'ボードゲーム「アグリコラ」に関する情報をまとめたWebサイトです。製品版の全てのカードを掲載する予定です。',
       ogHost: process.env.BASE_URL,
     },
+  },
+
+  'google-gtag': {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: true,
   },
 
   sitemap: {
