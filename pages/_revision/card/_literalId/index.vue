@@ -200,6 +200,10 @@ export default {
         return 'cardNameJa-minorImprovement'
       if (this.card.type.name_en.includes('Major Improvement'))
         return 'cardNameJa-majorImprovement'
+      if (this.card.type.name_en.includes('Parent (Mother) (Consul Dirigens)'))
+        return 'cardNameJa-cdDeckMother'
+      if (this.card.type.name_en.includes('Parent (Father) (Consul Dirigens)'))
+        return 'cardNameJa-cdDeckFather'
       return ''
     },
     hasAnyIcon() {
@@ -267,6 +271,12 @@ export default {
 }
 .cardNameJa-WBDeck {
   color: $wb-deck;
+}
+.cardNameJa-cdDeckMother {
+  color: $cd-deck-mother;
+}
+.cardNameEn-cdDeckFather {
+  color: $cd-deck-father;
 }
 
 .cardNameEn {
