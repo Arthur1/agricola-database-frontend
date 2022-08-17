@@ -30,6 +30,14 @@ export default {
           return 'cardIdBadge-forestDeck'
         if (this.card.type.name_en.includes('WB-Deck'))
           return 'cardIdBadge-WBDeck'
+        if (
+          this.card.type.name_en.includes('Parent (Mother) (Consul Dirigens)')
+        )
+          return 'cardIdBadge-cdDeckMother'
+        if (
+          this.card.type.name_en.includes('Parent (Father) (Consul Dirigens)')
+        )
+          return 'cardIdBadge-cdDeckFather'
         return ''
       }
     },
@@ -77,6 +85,12 @@ export default {
 }
 .cardIdBadge-WBDeck {
   background: $wb-deck;
+}
+.cardIdBadge-cdDeckMother {
+  background: $cd-deck-mother;
+}
+.cardIdBadge-cdDeckFather {
+  background: $cd-deck-father;
 }
 .cardIdBadge-special1 {
   background: linear-gradient(0.25turn, $minor-improvement, $major-improvement);
